@@ -1,58 +1,19 @@
 import { ModelList } from '../components/business/ModelList';
-import { Model } from '../types/model';
-
-// Mock data - will be replaced with real API data in the service layer
-const mockModels: Model[] = [
-  {
-    id: '1',
-    name: 'BERT-base-uncased',
-    description: 'Pre-trained BERT model uncased on English language using a masked language modeling (MLM) objective.',
-    author: 'Google Research',
-    tags: ['transformer', 'bert', 'nlp', 'english'],
-    likes: 15000,
-    downloads: 1000000,
-    lastUpdated: '2023-12-25T10:00:00Z',
-    framework: 'PyTorch',
-    task: 'Text Classification',
-    license: 'Apache 2.0'
-  },
-  {
-    id: '2',
-    name: 'GPT-2 Small',
-    description: 'OpenAI GPT-2 Small model for text generation and language modeling.',
-    author: 'OpenAI',
-    tags: ['transformer', 'gpt', 'nlp', 'text-generation'],
-    likes: 12000,
-    downloads: 800000,
-    lastUpdated: '2023-12-24T15:30:00Z',
-    framework: 'TensorFlow',
-    task: 'Text Generation',
-    license: 'MIT'
-  },
-  {
-    id: '3',
-    name: 'ResNet-50',
-    description: 'Deep residual learning model for image classification.',
-    author: 'Microsoft Research',
-    tags: ['computer-vision', 'classification', 'resnet'],
-    likes: 10000,
-    downloads: 500000,
-    lastUpdated: '2023-12-23T09:15:00Z',
-    framework: 'PyTorch',
-    task: 'Image Classification',
-    license: 'BSD'
-  }
-];
+import { likeModel, downloadModel } from '../services/api';
 
 export default function Home() {
-  const handleLike = (modelId: string) => {
-    console.log('Like model:', modelId);
-    // Will be implemented in service layer
+  const handleLike = async (modelId: string) => {
+    const response = await likeModel(modelId);
+    if (response.error) {
+      console.error('Failed to like model:', response.error);
+    }
   };
 
-  const handleDownload = (modelId: string) => {
-    console.log('Download model:', modelId);
-    // Will be implemented in service layer
+  const handleDownload = async (modelId: string) => {
+    const response = await downloadModel(modelId);
+    if (response.error) {
+      console.error('Failed to download model:', response.error);
+    }
   };
 
   return (
@@ -64,7 +25,6 @@ export default function Home() {
         </header>
 
         <ModelList
-          models={mockModels}
           onLike={handleLike}
           onDownload={handleDownload}
         />

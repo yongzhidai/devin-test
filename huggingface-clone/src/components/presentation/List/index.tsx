@@ -3,7 +3,8 @@ import { List as AntList } from 'antd';
 import type { ListProps as AntListProps } from 'antd';
 
 export interface ListProps<T> extends Omit<AntListProps<T>, 'children'> {
-  // Add any custom props here
+  dataSource: T[];
+  renderItem: (item: T, index: number) => React.ReactNode;
 }
 
 export const List = Object.assign(
