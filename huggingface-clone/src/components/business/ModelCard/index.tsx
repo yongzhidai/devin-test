@@ -3,6 +3,7 @@ import { Model } from '../../../types/model';
 import { Space, Tooltip } from 'antd';
 import { Card, Tag, Button } from '../../presentation';
 import { DownloadOutlined, LikeOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { formatNumber, formatRelativeTime } from '../../../utils/format';
 
 interface ModelCardProps {
   model: Model;
@@ -38,7 +39,7 @@ export const ModelCard: React.FC<ModelCardProps> = ({ model, onLike, onDownload 
           <span>•</span>
           <Tooltip title={new Date(model.lastUpdated).toLocaleString()}>
             <span className="flex items-center gap-1">
-              <ClockCircleOutlined /> Updated {new Date(model.lastUpdated).toLocaleDateString()}
+              <ClockCircleOutlined /> {formatRelativeTime(model.lastUpdated)}
             </span>
           </Tooltip>
         </div>
@@ -55,13 +56,13 @@ export const ModelCard: React.FC<ModelCardProps> = ({ model, onLike, onDownload 
               icon={<LikeOutlined />} 
               onClick={handleLike}
             >
-              {model.likes.toLocaleString()}
+              {formatNumber(model.likes)}
             </Button>
             <Button 
               icon={<DownloadOutlined />} 
               onClick={handleDownload}
             >
-              {model.downloads.toLocaleString()}
+              {formatNumber(model.downloads)}
             </Button>
           </Space>
           <Tag color="orange">{model.license}</Tag>
