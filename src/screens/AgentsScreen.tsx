@@ -1,14 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ListRenderItem, ListRenderItemInfo } from 'react-native';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
-
-type RootStackParamList = {
-  Agents: undefined;
-  CreateAgent: undefined;
-  Workflow: undefined;
-  KnowledgeBase: undefined;
-  CustomTools: undefined;
-};
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProp } from '../types/navigation';
 
 type Agent = {
   id: string;
@@ -17,9 +10,9 @@ type Agent = {
 };
 
 export default function AgentsScreen() {
-  const navigation = useNavigation<RootStackParamList>();
+  const navigation = useNavigation<AppNavigationProp>();
   const handleCreateAgent = () => {
-    navigation.navigate('CreateAgent');
+    navigation.navigate('CreateAgent' as keyof RootStackParamList);
   };
   const agents = [
     { id: '1', name: '测试workflow', status: 'online' },
