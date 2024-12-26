@@ -95,6 +95,11 @@ export async function likeModel(modelId: string): Promise<ApiResponse<boolean>> 
   try {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 300));
+    // Find and update the model in our mock data
+    const model = mockModels.find(m => m.id === modelId);
+    if (!model) {
+      return { data: false, error: 'Model not found' };
+    }
     return { data: true };
   } catch (error) {
     return { 
@@ -108,6 +113,11 @@ export async function downloadModel(modelId: string): Promise<ApiResponse<boolea
   try {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 300));
+    // Find and verify the model exists before allowing download
+    const model = mockModels.find(m => m.id === modelId);
+    if (!model) {
+      return { data: false, error: 'Model not found' };
+    }
     return { data: true };
   } catch (error) {
     return { 

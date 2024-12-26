@@ -1,10 +1,10 @@
+'use client';
+
 import React from 'react';
 import { Input as AntInput } from 'antd';
 import type { InputProps as AntInputProps } from 'antd';
 
-export interface InputProps extends AntInputProps {
-  // Add any custom props here
-}
+export type InputProps = AntInputProps;
 
 export const Input: React.FC<InputProps> = (props) => {
   return <AntInput {...props} />;

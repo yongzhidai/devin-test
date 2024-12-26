@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { useModelsStore } from '../../../store/models';
 import { Model } from '../../../types/model';
 import { Space, Tooltip } from 'antd';
 import { Card, Tag, Button } from '../../presentation';
@@ -7,17 +10,17 @@ import { formatNumber, formatRelativeTime } from '../../../utils/format';
 
 interface ModelCardProps {
   model: Model;
-  onLike?: (modelId: string) => void;
-  onDownload?: (modelId: string) => void;
 }
 
-export const ModelCard: React.FC<ModelCardProps> = ({ model, onLike, onDownload }) => {
+export const ModelCard: React.FC<ModelCardProps> = ({ model }) => {
+  const { likeModel, downloadModel } = useModelsStore();
+
   const handleLike = () => {
-    onLike?.(model.id);
+    likeModel(model.id);
   };
 
   const handleDownload = () => {
-    onDownload?.(model.id);
+    downloadModel(model.id);
   };
 
   return (

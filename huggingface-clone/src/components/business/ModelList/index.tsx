@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect } from 'react';
 import { Model, ModelFilter } from '../../../types/model';
 import { Space, Spin } from 'antd';
@@ -7,23 +9,14 @@ import { useModelsStore } from '../../../store/models';
 
 // Search component is imported from presentation layer
 
-interface ModelListProps {
-  onLike?: (modelId: string) => void;
-  onDownload?: (modelId: string) => void;
-}
-
-export const ModelList: React.FC<ModelListProps> = ({ onLike, onDownload }) => {
+export const ModelList: React.FC = () => {
   const {
     models,
     filteredModels,
     loading,
-    filter,
-    searchQuery,
     setFilter,
     setSearchQuery,
-    fetchModels,
-    likeModel,
-    downloadModel
+    fetchModels
   } = useModelsStore();
 
   const tasks = Array.from(new Set(models.map(m => m.task)));
@@ -83,8 +76,6 @@ export const ModelList: React.FC<ModelListProps> = ({ onLike, onDownload }) => {
             <List.Item key={model.id}>
               <ModelCard
                 model={model}
-                onLike={onLike}
-                onDownload={onDownload}
               />
             </List.Item>
           )}

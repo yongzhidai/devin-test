@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { List as AntList } from 'antd';
 import type { ListProps as AntListProps } from 'antd';

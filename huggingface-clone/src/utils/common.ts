@@ -7,7 +7,7 @@
  * @param func Function to debounce
  * @param wait Wait time in milliseconds
  */
-export const debounce = <T extends (...args: any[]) => any>(
+export const debounce = <T extends (...args: unknown[]) => unknown>(
   func: T,
   wait: number
 ): ((...args: Parameters<T>) => void) => {
@@ -42,18 +42,21 @@ export const deepClone = <T>(obj: T): T => {
  * @param obj2 Second object
  * @returns Boolean indicating if objects are equal
  */
-export const isEqual = (obj1: any, obj2: any): boolean => {
+export const isEqual = (obj1: unknown, obj2: unknown): boolean => {
   if (obj1 === obj2) return true;
   
   if (typeof obj1 !== 'object' || typeof obj2 !== 'object') return false;
   if (obj1 === null || obj2 === null) return false;
   
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
+  const obj1Record = obj1 as Record<string, unknown>;
+  const obj2Record = obj2 as Record<string, unknown>;
+  
+  const keys1 = Object.keys(obj1Record);
+  const keys2 = Object.keys(obj2Record);
   
   if (keys1.length !== keys2.length) return false;
   
-  return keys1.every(key => isEqual(obj1[key], obj2[key]));
+  return keys1.every(key => isEqual(obj1Record[key], obj2Record[key]));
 };
 
 /**

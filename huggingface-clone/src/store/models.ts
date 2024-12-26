@@ -80,8 +80,9 @@ export const useModelsStore = create<ModelsState>((set, get) => ({
         return;
       }
       message.success('Model liked successfully');
-    } catch (error) {
-      message.error('Failed to like model');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to like model';
+      message.error(errorMessage);
     }
   },
 
@@ -93,8 +94,9 @@ export const useModelsStore = create<ModelsState>((set, get) => ({
         return;
       }
       message.success('Model downloaded successfully');
-    } catch (error) {
-      message.error('Failed to download model');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to download model';
+      message.error(errorMessage);
     }
   },
 }));
