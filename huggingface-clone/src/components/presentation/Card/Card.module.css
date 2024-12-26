@@ -1,0 +1,23 @@
+.card {
+  @apply bg-white rounded-lg border border-gray-200 overflow-hidden transition-shadow duration-200;
+}
+
+.card:hover {
+  @apply shadow-lg;
+}
+
+.cardHeader {
+  @apply px-6 py-4 border-b border-gray-200 flex justify-between items-center;
+}
+
+.cardTitle {
+  @apply text-lg font-semibold text-gray-900;
+}
+
+.cardBody {
+  @apply p-6;
+}
+
+.cardFooter {
+  @apply px-6 py-4 bg-gray-50 border-t border-gray-200;
+}
