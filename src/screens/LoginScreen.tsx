@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { TextInput, Button, Surface, Text } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -11,12 +11,12 @@ const LoginScreen: React.FC = () => {
   const handleLogin = async () => {
     // Basic validation
     if (!email.trim() || !password.trim()) {
-      Alert.alert('Error', 'Please fill in all fields');
+      window.alert('Please fill in all fields');
       return;
     }
 
     if (!email.includes('@')) {
-      Alert.alert('Error', 'Please enter a valid email address');
+      window.alert('Please enter a valid email address');
       return;
     }
 
@@ -29,12 +29,12 @@ const LoginScreen: React.FC = () => {
       // Mock authentication (in a real app, this would be an API call)
       if (email === 'test@example.com' && password === 'password') {
         await AsyncStorage.setItem('userToken', 'dummy-auth-token');
-        Alert.alert('Success', 'Login successful!');
+        window.alert('Login successful!');
       } else {
-        Alert.alert('Error', 'Invalid credentials');
+        window.alert('Invalid credentials');
       }
     } catch (error) {
-      Alert.alert('Error', 'An error occurred during login');
+      window.alert('An error occurred during login');
     } finally {
       setLoading(false);
     }

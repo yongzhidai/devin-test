@@ -1,15 +1,14 @@
 import React from 'react';
-import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
-import LoginScreen from './src/screens/LoginScreen';
+import LoginScreen from './screens/LoginScreen';
 
 function App(): React.JSX.Element {
   return (
     <PaperProvider>
-      <SafeAreaView style={styles.container}>
-        <StatusBar barStyle="dark-content" />
+      <View style={styles.container}>
         <LoginScreen />
-      </SafeAreaView>
+      </View>
     </PaperProvider>
   );
 }
