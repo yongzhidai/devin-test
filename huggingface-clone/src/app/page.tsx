@@ -1,19 +1,15 @@
 import { ModelList } from '../components/business/ModelList';
-import { likeModel, downloadModel } from '../services/api';
+import { useModelsStore } from '../store/models';
 
 export default function Home() {
-  const handleLike = async (modelId: string) => {
-    const response = await likeModel(modelId);
-    if (response.error) {
-      console.error('Failed to like model:', response.error);
-    }
+  const { likeModel, downloadModel } = useModelsStore();
+
+  const handleLike = (modelId: string) => {
+    likeModel(modelId);
   };
 
-  const handleDownload = async (modelId: string) => {
-    const response = await downloadModel(modelId);
-    if (response.error) {
-      console.error('Failed to download model:', response.error);
-    }
+  const handleDownload = (modelId: string) => {
+    downloadModel(modelId);
   };
 
   return (
