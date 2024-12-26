@@ -25,7 +25,7 @@ const config = defineConfig({
       'react-native-reanimated': 'react-native-reanimated/lib/reanimated2/core',
       '@react-native-community/async-storage': '@react-native-async-storage/async-storage/lib/web',
       'react-native-screens': 'react-native-web',
-      'react-native-safe-area-context': 'react-native-safe-area-context/lib/module/web'
+      'react-native-safe-area-context': 'react-native-web'
     },
     extensions: ['.web.tsx', '.web.ts', '.web.jsx', '.web.js', '.tsx', '.ts', '.jsx', '.js']
   },
