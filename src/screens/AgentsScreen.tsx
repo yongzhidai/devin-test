@@ -1,24 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ListRenderItem, ListRenderItemInfo } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { AppNavigationProp } from '../types/navigation';
+import { useNavigation } from '@react-navigation/core';
+import { AppNavigationProp, RootStackParamList } from '../types/navigation';
+import { Agent } from '../types/agent';
 
-type Agent = {
-  id: string;
-  name: string;
-  status: 'online' | 'offline';
-};
+// Using imported Agent type
 
 export default function AgentsScreen() {
   const navigation = useNavigation<AppNavigationProp>();
   const handleCreateAgent = () => {
     navigation.navigate('CreateAgent' as keyof RootStackParamList);
   };
-  const agents = [
+  const agents: Agent[] = [
     { id: '1', name: '测试workflow', status: 'online' },
     { id: '2', name: '测试AM72B', status: 'online' },
     { id: '3', name: '0523智能体', status: 'offline' },
-  ];
+  ] as const;
 
   const renderAgent: ListRenderItem<Agent> = ({ item }: ListRenderItemInfo<Agent>) => (
     <View style={styles.card}>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { TextInput, Button, Surface, Text } from 'react-native-paper';
+import { Button, Surface, Text } from 'react-native-paper';
+import { TextInput as PaperTextInput } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen: React.FC = () => {
@@ -45,23 +46,21 @@ const LoginScreen: React.FC = () => {
       <Surface style={styles.surface}>
         <Text style={styles.title}>Welcome Back</Text>
         
-        <TextInput
+        <PaperTextInput
           label="Email"
           value={email}
           onChangeText={setEmail}
           style={styles.input}
           mode="outlined"
-          keyboardType="email-address"
-          autoCapitalize="none"
         />
 
-        <TextInput
+        <PaperTextInput
           label="Password"
           value={password}
           onChangeText={setPassword}
           style={styles.input}
           mode="outlined"
-          secureTextEntry
+          secureTextEntry={true}
         />
 
         <Button

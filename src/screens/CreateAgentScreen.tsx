@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
-
-type RootStackParamList = {
-  Agents: undefined;
-  CreateAgent: undefined;
-  Workflow: undefined;
-  KnowledgeBase: undefined;
-  CustomTools: undefined;
-};
-
-type CreateAgentScreenProps = {
-  navigation: NavigationProp<RootStackParamList>;
-};
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { TextInput } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProp } from '../types/navigation';
 
 export default function CreateAgentScreen() {
-  const navigation = useNavigation<RootStackParamList>();
+  const navigation = useNavigation<AppNavigationProp>();
   const [agentName, setAgentName] = useState('');
   const [description, setDescription] = useState('');
 
@@ -33,15 +23,17 @@ export default function CreateAgentScreen() {
           style={styles.input}
           value={agentName}
           onChangeText={setAgentName}
-          placeholder="输入智能体名称"
+          label="输入智能体名称"
+          mode="outlined"
         />
 
         <Text style={styles.label}>描述</Text>
         <TextInput
-          style={[styles.input, styles.textArea]}
+          style={styles.input}
           value={description}
           onChangeText={setDescription}
-          placeholder="输入智能体描述"
+          label="输入智能体描述"
+          mode="outlined"
           multiline
           numberOfLines={4}
         />
