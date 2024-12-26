@@ -2,20 +2,17 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import DrawerNavigator from './navigation/DrawerNavigator';
+import MainTabs from './navigation/MainTabs';
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <PaperProvider>
-          <NavigationContainer>
-            <DrawerNavigator />
-          </NavigationContainer>
-        </PaperProvider>
-      </GestureHandlerRootView>
+      <PaperProvider>
+        <NavigationContainer>
+          <MainTabs />
+        </NavigationContainer>
+      </PaperProvider>
     </SafeAreaProvider>
   );
 }
