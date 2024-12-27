@@ -1,9 +1,5 @@
-'use client';
-
 import React from 'react';
-import { MainLayout } from '@/components/business/MainLayout';
-import { Result } from 'antd';
-import { useParams } from 'next/navigation';
+import { DynamicPageContent } from '@/components/business/DynamicPageContent';
 
 export function generateStaticParams() {
   return [
@@ -43,21 +39,11 @@ const pageConfig: Record<string, { title: string; description: string }> = {
   },
 };
 
-export default function DynamicPage() {
-  const params = useParams();
-  const page = params.page as string;
-  const config = pageConfig[page] || {
+export default function DynamicPage({ params }: { params: { page: string } }) {
+  const config = pageConfig[params.page] || {
     title: '未找到页面',
     description: '请从左侧菜单选择正确的页面',
   };
 
-  return (
-    <MainLayout>
-      <Result
-        status={pageConfig[page] ? 'info' : 'warning'}
-        title={config.title}
-        subTitle={config.description}
-      />
-    </MainLayout>
-  );
+  return <DynamicPageContent pageId={params.page} config={config} />;
 }

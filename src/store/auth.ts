@@ -29,7 +29,8 @@ export const useAuthStore = create<AuthState>()(
           }
           set({ error: '无效的用户名或密码', isLoading: false });
           return false;
-        } catch {
+        } catch (error) {
+          console.error('Login failed:', error);
           set({ error: '登录失败，请重试', isLoading: false });
           return false;
         }
