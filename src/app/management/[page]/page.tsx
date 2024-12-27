@@ -5,12 +5,6 @@ import { MainLayout } from '@/components/business/MainLayout';
 import { Result } from 'antd';
 import { pageConfigs } from '@/store/pages';
 
-export function generateStaticParams() {
-  return Object.keys(pageConfigs).map((page) => ({
-    page,
-  }));
-}
-
 export default function DynamicPage({
   params,
 }: {
