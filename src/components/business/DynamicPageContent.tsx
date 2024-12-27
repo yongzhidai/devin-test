@@ -6,11 +6,13 @@ import { Result } from 'antd';
 import { pageConfigs } from '@/store/pages';
 
 interface DynamicPageContentProps {
-  pageId: string;
+  params: {
+    page: string;
+  };
 }
 
-export function DynamicPageContent({ pageId }: DynamicPageContentProps) {
-  const config = pageConfigs[pageId] || {
+export function DynamicPageContent({ params }: DynamicPageContentProps) {
+  const config = pageConfigs[params.page] || {
     title: '未找到页面',
     description: '请从左侧菜单选择正确的页面',
   };
@@ -18,7 +20,7 @@ export function DynamicPageContent({ pageId }: DynamicPageContentProps) {
   return (
     <MainLayout>
       <Result
-        status={pageId ? 'info' : 'warning'}
+        status={params.page in pageConfigs ? 'info' : 'warning'}
         title={config.title}
         subTitle={config.description}
       />
