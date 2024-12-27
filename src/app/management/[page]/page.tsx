@@ -1,16 +1,8 @@
-import React from 'react';
-import { DynamicPageContent } from '@/components/business/DynamicPageContent';
+'use client';
 
-export function generateStaticParams() {
-  return [
-    { page: 'analysis' },
-    { page: 'monitor' },
-    { page: 'user-list' },
-    { page: 'user-groups' },
-    { page: 'general' },
-    { page: 'security' },
-  ];
-}
+import React from 'react';
+import { useParams } from 'next/navigation';
+import { DynamicPageContent } from '@/components/business/DynamicPageContent';
 
 const pageConfig: Record<string, { title: string; description: string }> = {
   analysis: {
@@ -39,16 +31,14 @@ const pageConfig: Record<string, { title: string; description: string }> = {
   },
 };
 
-interface Props {
-  params: { page: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
+export default function DynamicPage() {
+  const params = useParams();
+  const pageId = params?.page as string;
 
-export default function DynamicPage({ params }: Props) {
-  const config = pageConfig[params.page] || {
+  const config = pageConfig[pageId] || {
     title: '未找到页面',
     description: '请从左侧菜单选择正确的页面',
   };
 
-  return <DynamicPageContent pageId={params.page} config={config} />;
+  return <DynamicPageContent pageId={pageId} config={config} />;
 }
