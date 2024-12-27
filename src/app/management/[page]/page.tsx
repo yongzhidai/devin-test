@@ -1,10 +1,5 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
-
-const DynamicPageContent = dynamic(
-  () => import('./page.client').then(mod => mod.DynamicPageContent),
-  { ssr: false }
-);
+import { DynamicPageContent } from '@/components/business/DynamicPageContent';
 
 export function generateStaticParams() {
   return [

@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ConfigProvider } from "antd";
-import zhCN from "antd/locale/zh_CN";
 import "./globals.css";
 import 'antd/dist/reset.css';
-import dynamic from 'next/dynamic';
-
-const AppLayout = dynamic(() => import('@/components/business/AppLayout').then(mod => mod.AppLayout), {
-  ssr: false
-});
+import { ClientLayout } from '@/components/business/ClientLayout';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,9 +22,7 @@ export default function RootLayout({
   return (
     <html lang="zh">
       <body className={`${inter.variable} antialiased`}>
-        <ConfigProvider locale={zhCN}>
-          <AppLayout>{children}</AppLayout>
-        </ConfigProvider>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
