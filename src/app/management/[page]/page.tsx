@@ -1,7 +1,5 @@
-'use client';
-
 import React from 'react';
-import { DynamicPageContent } from '@/components/business/DynamicPageContent';
+import { DynamicPageWrapper } from '@/components/business/DynamicPageWrapper';
 import { pageConfigs } from '@/store/pages';
 
 export function generateStaticParams() {
@@ -15,5 +13,5 @@ export default function DynamicPage({
 }: {
   params: { page: string };
 }) {
-  return <DynamicPageContent pageId={params.page} />;
+  return <DynamicPageWrapper pageId={params.page} />;
 }
