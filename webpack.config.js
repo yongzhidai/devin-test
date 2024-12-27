@@ -17,6 +17,7 @@ module.exports = async function (env, argv) {
     crypto: require.resolve('crypto-browserify'),
     stream: require.resolve('stream-browserify'),
     buffer: require.resolve('buffer'),
+    vm: require.resolve('vm-browserify'),
   };
 
   config.plugins = [
