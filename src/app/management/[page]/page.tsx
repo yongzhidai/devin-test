@@ -1,10 +1,7 @@
-'use client';
-
 import React from 'react';
-import { useParams } from 'next/navigation';
 import { DynamicPageContent } from '@/components/business/DynamicPageContent';
 
-const pageConfig: Record<string, { title: string; description: string }> = {
+export const pageConfig: Record<string, { title: string; description: string }> = {
   analysis: {
     title: '分析页',
     description: '这里是数据分析页面',
@@ -31,14 +28,21 @@ const pageConfig: Record<string, { title: string; description: string }> = {
   },
 };
 
-export default function DynamicPage() {
-  const params = useParams();
-  const pageId = params?.page as string;
+export function generateStaticParams() {
+  return Object.keys(pageConfig).map((page) => ({
+    page,
+  }));
+}
 
-  const config = pageConfig[pageId] || {
+export default function DynamicPage({
+  params,
+}: {
+  params: { page: string };
+}) {
+  const config = pageConfig[params.page] || {
     title: '未找到页面',
     description: '请从左侧菜单选择正确的页面',
   };
 
-  return <DynamicPageContent pageId={pageId} config={config} />;
+  return <DynamicPageContent pageId={params.page} config={config} />;
 }
