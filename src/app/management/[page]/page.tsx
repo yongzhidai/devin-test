@@ -39,7 +39,12 @@ const pageConfig: Record<string, { title: string; description: string }> = {
   },
 };
 
-export default function DynamicPage({ params }: { params: { page: string } }) {
+interface Props {
+  params: { page: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+export default function DynamicPage({ params }: Props) {
   const config = pageConfig[params.page] || {
     title: '未找到页面',
     description: '请从左侧菜单选择正确的页面',

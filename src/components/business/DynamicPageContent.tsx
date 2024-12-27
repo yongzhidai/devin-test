@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { MainLayout } from './MainLayout';
 import { Result } from 'antd';
 
@@ -14,12 +14,14 @@ interface DynamicPageContentProps {
 
 export function DynamicPageContent({ pageId, config }: DynamicPageContentProps) {
   return (
-    <MainLayout>
-      <Result
-        status={pageId ? 'info' : 'warning'}
-        title={config.title}
-        subTitle={config.description}
-      />
-    </MainLayout>
+    <Suspense fallback={<div>Loading...</div>}>
+      <MainLayout>
+        <Result
+          status={pageId ? 'info' : 'warning'}
+          title={config.title}
+          subTitle={config.description}
+        />
+      </MainLayout>
+    </Suspense>
   );
 }
