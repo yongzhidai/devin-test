@@ -1,5 +1,6 @@
-import { pageConfigs } from '@/store/pages';
+import React from 'react';
 import { DynamicPageContent } from '@/components/business/DynamicPageContent';
+import { pageConfigs } from '@/store/pages';
 
 export function generateStaticParams() {
   return Object.keys(pageConfigs).map((page) => ({

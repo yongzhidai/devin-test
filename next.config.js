@@ -10,8 +10,7 @@ const nextConfig = {
   transpilePackages: ['antd', '@ant-design/icons'],
   experimental: {
     esmExternals: 'loose'
-  },
-  trailingSlash: true
+  }
 }
 
 module.exports = nextConfig

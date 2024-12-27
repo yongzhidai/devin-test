@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { ConfigProvider } from "antd";
 import zhCN from "antd/locale/zh_CN";
 import "./globals.css";
+import 'antd/dist/reset.css';
 
 const inter = Inter({
   subsets: ["latin"],
