@@ -11,12 +11,7 @@ const nextConfig = {
   experimental: {
     esmExternals: 'loose'
   },
-  // Disable static optimization for client components
-  staticPageGenerationTimeout: 1000,
-  // Enable client-side routing
-  trailingSlash: true,
-  // Disable server components
-  serverComponents: false
+  trailingSlash: true
 }
 
 module.exports = nextConfig
