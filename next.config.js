@@ -1,13 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  images: {
-    unoptimized: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
-  trailingSlash: true
+  transpilePackages: ['@ant-design', 'antd', 'rc-util', 'rc-pagination', 'rc-picker']
 }
 
 module.exports = nextConfig

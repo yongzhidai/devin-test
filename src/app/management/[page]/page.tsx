@@ -1,16 +1,8 @@
 import React from 'react';
 import { DynamicPageContent } from '@/components/business/DynamicPageContent';
+import { generateStaticParams } from './static-params';
 
-export function generateStaticParams() {
-  return [
-    { page: 'analysis' },
-    { page: 'monitor' },
-    { page: 'user-list' },
-    { page: 'user-groups' },
-    { page: 'general' },
-    { page: 'security' },
-  ];
-}
+export { generateStaticParams };
 
 export default function DynamicPage({
   params,

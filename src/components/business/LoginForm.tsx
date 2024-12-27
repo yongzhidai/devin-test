@@ -5,7 +5,7 @@ import { Form, Input, Button, message, Card, Space } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/auth';
-import { authService } from '@/services/auth';
+
 
 interface LoginFormData {
   username: string;
@@ -20,13 +20,17 @@ export function LoginForm() {
   const onFinish = async (values: LoginFormData) => {
     setLoading(true);
     try {
-      const response = await authService.login(values);
-      if (response.success) {
-        await login(values.username, values.password);
-        message.success('登录成功');
-        router.push('/management');
+      // Using mock authentication
+      if (values.username === 'admin' && values.password === 'admin123') {
+        const success = await login(values.username, values.password);
+        if (success) {
+          message.success('登录成功');
+          router.push('/management');
+        } else {
+          message.error('登录失败，请重试');
+        }
       } else {
-        message.error(response.error || '登录失败');
+        message.error('用户名或密码错误');
       }
     } catch (error) {
       message.error('登录过程中发生错误');

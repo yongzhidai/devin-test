@@ -115,7 +115,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
             <button
               onClick={() => {
                 logout();
-                router.push('/login');
+                router.replace('/login');
               }}
               className="text-red-500 hover:text-red-600 transition-colors"
             >

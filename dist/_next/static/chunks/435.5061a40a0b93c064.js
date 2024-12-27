@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[435],{4435:function(e,t,r){r.r(t),r.d(t,{default:function(){return a}});var n=r(7437);r(2265);var s=r(2579),u=r(525);function a(e){let{error:t,reset:r}=e;return(0,n.jsx)(s.ZP,{status:"error",title:"发生错误",subTitle:t.message||"抱歉，系统出现了一些问题。",extra:(0,n.jsx)(u.ZP,{type:"primary",onClick:r,children:"重试"})})}}}]);

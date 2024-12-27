@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ClientProvider } from '@/components/business/ClientLayout';
+import { AntdProvider } from '@/components/business/AntdProvider';
+import StyledComponentsRegistry from '@/lib/AntdRegistry';
 import "./globals.css";
-import 'antd/dist/reset.css';
-import { ClientLayout } from '@/components/business/ClientLayout';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,7 +23,11 @@ export default function RootLayout({
   return (
     <html lang="zh">
       <body className={`${inter.variable} antialiased`}>
-        <ClientLayout>{children}</ClientLayout>
+        <StyledComponentsRegistry>
+          <AntdProvider>
+            <ClientProvider>{children}</ClientProvider>
+          </AntdProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

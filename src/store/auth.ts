@@ -17,7 +17,7 @@ export const useAuthStore = create<AuthState>()(
     (set) => ({
       isAuthenticated: false,
       username: null,
-      isLoading: true,
+      isLoading: false,
       error: null,
       login: async (username: string, password: string) => {
         set({ isLoading: true, error: null });
@@ -35,17 +35,19 @@ export const useAuthStore = create<AuthState>()(
           return false;
         }
       },
-      logout: () => set({ 
-        isAuthenticated: false, 
-        username: null, 
-        error: null 
-      }),
+      logout: () => {
+        set({ 
+          isAuthenticated: false, 
+          username: null, 
+          error: null 
+        });
+      },
       setLoading: (loading: boolean) => set({ isLoading: loading }),
       setError: (error: string | null) => set({ error }),
     }),
     {
       name: 'auth-storage',
-      skipHydration: true,
+      skipHydration: false,
     }
   )
 );
