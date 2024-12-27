@@ -8,15 +8,12 @@ export function generateStaticParams() {
   }));
 }
 
-export default function DynamicPage({
-  params,
-}: {
-  params: { page: string };
-}) {
-  const config = pageConfigs[params.page] || {
-    title: '未找到页面',
-    description: '请从左侧菜单选择正确的页面',
+interface Props {
+  params: {
+    page: string;
   };
+}
 
-  return <DynamicPageContent pageId={params.page} config={config} />;
+export default function DynamicPage({ params }: Props) {
+  return <DynamicPageContent pageId={params.page} />;
 }
