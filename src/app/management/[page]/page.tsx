@@ -8,12 +8,13 @@ export function generateStaticParams() {
   }));
 }
 
-interface Props {
-  params: {
-    page: string;
-  };
-}
+type Props = {
+  params: { page: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
-export default function DynamicPage({ params }: Props) {
+function DynamicPage({ params }: Props) {
   return <DynamicPageContent pageId={params.page} />;
 }
+
+export default DynamicPage;
