@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
-import { DynamicPageWrapper } from '@/components/business/DynamicPageWrapper';
+import { MainLayout } from '@/components/business/MainLayout';
+import { Result } from 'antd';
 import { pageConfigs } from '@/store/pages';
 
 export function generateStaticParams() {
@@ -13,5 +16,18 @@ export default function DynamicPage({
 }: {
   params: { page: string };
 }) {
-  return <DynamicPageWrapper pageId={params.page} />;
+  const config = pageConfigs[params.page] || {
+    title: '未找到页面',
+    description: '请从左侧菜单选择正确的页面',
+  };
+
+  return (
+    <MainLayout>
+      <Result
+        status={params.page in pageConfigs ? 'info' : 'warning'}
+        title={config.title}
+        subTitle={config.description}
+      />
+    </MainLayout>
+  );
 }

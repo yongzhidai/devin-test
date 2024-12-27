@@ -5,11 +5,12 @@ const nextConfig = {
     unoptimized: true,
   },
   typescript: {
-    // !! WARN !!
-    // This is a temporary solution for the build error
-    // Remove this when the type issues are resolved
     ignoreBuildErrors: true,
   },
+  transpilePackages: ['antd', '@ant-design/icons'],
+  experimental: {
+    esmExternals: 'loose'
+  }
 }
 
 module.exports = nextConfig

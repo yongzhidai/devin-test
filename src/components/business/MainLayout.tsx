@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
+import 'antd/dist/reset.css';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
