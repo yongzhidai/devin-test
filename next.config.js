@@ -6,10 +6,6 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  },
-  transpilePackages: ['antd', '@ant-design/icons'],
-  experimental: {
-    esmExternals: 'loose'
   }
 }
 

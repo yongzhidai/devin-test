@@ -1,18 +1,16 @@
+'use client';
+
 import React from 'react';
 import { Result } from 'antd';
 import { pageConfigs } from '@/store/pages';
 
-export function generateStaticParams() {
-  return Object.keys(pageConfigs).map((page) => ({
-    page,
-  }));
+interface DynamicPageContentProps {
+  params: {
+    page: string;
+  };
 }
 
-export default function DynamicPage({
-  params,
-}: {
-  params: { page: string };
-}) {
+export function DynamicPageContentClient({ params }: DynamicPageContentProps) {
   const config = pageConfigs[params.page] || {
     title: '未找到页面',
     description: '请从左侧菜单选择正确的页面',
@@ -20,7 +18,7 @@ export default function DynamicPage({
 
   return (
     <Result
-      status="info"
+      status={params.page in pageConfigs ? 'info' : 'warning'}
       title={config.title}
       subTitle={config.description}
     />
