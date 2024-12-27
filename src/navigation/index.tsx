@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import { AIApplication } from '../types';
 
 // Import actual screens
 import LoginScreen from '../pages/LoginScreen';
@@ -10,8 +11,17 @@ import HomeScreen from '../pages/HomeScreen';
 import StudioScreen from '../pages/StudioScreen';
 import DiscoverScreen from '../pages/DiscoverScreen';
 import ProfileScreen from '../pages/ProfileScreen';
+import AppChatScreen from '../pages/AppChatScreen';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Login: undefined;
+  Main: undefined;
+  AppChat: {
+    app: AIApplication;
+  };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
 
 const MainTabs = () => {
@@ -72,9 +82,22 @@ const MainTabs = () => {
 export const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Main" component={MainTabs} />
+      <Stack.Navigator>
+        <Stack.Screen 
+          name="Login" 
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="Main" 
+          component={MainTabs}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="AppChat" 
+          component={AppChatScreen}
+          options={{ headerShown: true }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

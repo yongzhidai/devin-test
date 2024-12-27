@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AIApplication } from '../../../types';
 import { AppCard } from '../../presentation/AppCard';
 import { FilterChip } from '../../presentation/FilterChip';
+import { RootStackParamList } from '../../../navigation';
 
 interface AppListProps {
   applications: AIApplication[];
@@ -17,8 +20,10 @@ export const AppList: React.FC<AppListProps> = ({
   onFilterChange,
   selectedType
 }) => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  
   const handleAppPress = (app: AIApplication) => {
-    console.log('Selected app:', app);
+    navigation.navigate('AppChat', { app });
   };
 
   return (

@@ -6,21 +6,23 @@ interface ChatStore {
   messages: ChatMessage[];
   isLoading: boolean;
   error: string | null;
-  sendMessage: (content: string) => Promise<void>;
+  sendMessage: (content: string, appId?: string) => Promise<void>;
   clearMessages: () => void;
   clearError: () => void;
+  getMessagesForApp: (appId: string) => ChatMessage[];
 }
 
 export const useChatStore = create<ChatStore>((set, get) => ({
   messages: [],
   isLoading: false,
   error: null,
-  sendMessage: async (content: string) => {
+  sendMessage: async (content: string, appId?: string) => {
     const userMessage: ChatMessage = {
       id: Date.now().toString(),
       content,
       sender: "user",
       timestamp: Date.now(),
+      appId,
     };
 
     set(state => ({
@@ -44,4 +46,9 @@ export const useChatStore = create<ChatStore>((set, get) => ({
   },
   clearMessages: () => set({ messages: [], error: null }),
   clearError: () => set({ error: null }),
+  
+  getMessagesForApp: (appId: string) => {
+    const state = get();
+    return state.messages.filter(message => message.appId === appId);
+  },
 }));

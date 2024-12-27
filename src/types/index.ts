@@ -22,4 +22,5 @@ export interface ChatMessage {
   content: string;
   sender: 'user' | 'ai';
   timestamp: number;
+  appId?: string;
 }

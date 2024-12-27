@@ -38,11 +38,25 @@ export const useDiscoverStore = create<DiscoverStore>((set, get) => ({
 
   filterByType: (type: string | null) => {
     const { recommendedApplications } = get();
+    if (!recommendedApplications || recommendedApplications.length === 0) {
+      return;
+    }
+
+    if (type === '智能体') {
+      set({
+        selectedType: '智能体',
+        filteredApplications: recommendedApplications.filter(app => app.type === '智能体')
+      });
+      return;
+    }
+
+    const filteredApps = type 
+      ? recommendedApplications.filter(app => app.type === type)
+      : recommendedApplications;
+    
     set({
       selectedType: type,
-      filteredApplications: type 
-        ? recommendedApplications.filter(app => app.type === type)
-        : recommendedApplications
+      filteredApplications: filteredApps
     });
   },
 }));
