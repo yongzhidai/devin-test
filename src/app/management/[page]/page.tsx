@@ -1,11 +1,20 @@
 import React from 'react';
-import { Result } from 'antd';
-import { pageConfigs } from '@/store/pages';
+import dynamic from 'next/dynamic';
+
+const DynamicPageContent = dynamic(
+  () => import('./page.client').then(mod => mod.DynamicPageContent),
+  { ssr: false }
+);
 
 export function generateStaticParams() {
-  return Object.keys(pageConfigs).map((page) => ({
-    page,
-  }));
+  return [
+    { page: 'analysis' },
+    { page: 'monitor' },
+    { page: 'user-list' },
+    { page: 'user-groups' },
+    { page: 'general' },
+    { page: 'security' },
+  ];
 }
 
 export default function DynamicPage({
@@ -13,16 +22,5 @@ export default function DynamicPage({
 }: {
   params: { page: string };
 }) {
-  const config = pageConfigs[params.page] || {
-    title: '未找到页面',
-    description: '请从左侧菜单选择正确的页面',
-  };
-
-  return (
-    <Result
-      status="info"
-      title={config.title}
-      subTitle={config.description}
-    />
-  );
+  return <DynamicPageContent page={params.page} />;
 }

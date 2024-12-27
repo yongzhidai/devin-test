@@ -6,7 +6,8 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  }
+  },
+  trailingSlash: true
 }
 
 module.exports = nextConfig

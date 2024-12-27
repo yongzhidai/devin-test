@@ -4,8 +4,11 @@ import { ConfigProvider } from "antd";
 import zhCN from "antd/locale/zh_CN";
 import "./globals.css";
 import 'antd/dist/reset.css';
-import { headers } from 'next/headers';
-import { MainLayout } from "@/components/business/MainLayout";
+import dynamic from 'next/dynamic';
+
+const AppLayout = dynamic(() => import('@/components/business/AppLayout').then(mod => mod.AppLayout), {
+  ssr: false
+});
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,15 +25,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const headersList = headers();
-  const pathname = headersList.get("x-pathname") || "";
-  const isLoginPage = pathname === "/login";
-
   return (
     <html lang="zh">
       <body className={`${inter.variable} antialiased`}>
         <ConfigProvider locale={zhCN}>
-          {isLoginPage ? children : <MainLayout>{children}</MainLayout>}
+          <AppLayout>{children}</AppLayout>
         </ConfigProvider>
       </body>
     </html>
