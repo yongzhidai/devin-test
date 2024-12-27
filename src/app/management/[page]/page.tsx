@@ -5,6 +5,17 @@ import { MainLayout } from '@/components/business/MainLayout';
 import { Result } from 'antd';
 import { useParams } from 'next/navigation';
 
+export function generateStaticParams() {
+  return [
+    { page: 'analysis' },
+    { page: 'monitor' },
+    { page: 'user-list' },
+    { page: 'user-groups' },
+    { page: 'general' },
+    { page: 'security' },
+  ];
+}
+
 const pageConfig: Record<string, { title: string; description: string }> = {
   analysis: {
     title: '分析页',
