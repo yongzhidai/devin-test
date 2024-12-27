@@ -1,4 +1,5 @@
 const createExpoWebpackConfigAsync = require('@expo/webpack-config');
+const webpack = require('webpack');
 
 module.exports = async function (env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
@@ -20,7 +21,7 @@ module.exports = async function (env, argv) {
 
   config.plugins = [
     ...config.plugins,
-    new config.webpack.ProvidePlugin({
+    new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
     }),
   ];
