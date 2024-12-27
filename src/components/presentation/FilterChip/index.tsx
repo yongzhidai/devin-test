@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 20,
     marginRight: 8,
+    height: 40,
+    maxHeight: 40,
     minHeight: 40,
     alignItems: 'center',
     justifyContent: 'center',

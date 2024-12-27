@@ -38,11 +38,17 @@ export const useApplicationStore = create<ApplicationStore>((set, get) => ({
 
   filterByType: (type: string | null) => {
     const { applications } = get();
+    if (!applications || applications.length === 0) {
+      return;
+    }
+    
+    const filteredApps = type 
+      ? applications.filter(app => app.type === type)
+      : applications;
+    
     set({
       selectedType: type,
-      filteredApplications: type 
-        ? applications.filter(app => app.type === type)
-        : applications
+      filteredApplications: filteredApps.length > 0 ? filteredApps : applications
     });
   },
 }));
