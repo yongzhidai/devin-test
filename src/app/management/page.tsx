@@ -1,11 +1,14 @@
-import React from 'react';
-import dynamic from 'next/dynamic';
+'use client';
 
-const DashboardContent = dynamic(
-  () => import('./page.client').then(mod => mod.DashboardContent),
-  { ssr: false }
-);
+import React from 'react';
+import { Result } from 'antd';
 
 export default function ManagementPage() {
-  return <DashboardContent />;
+  return (
+    <Result
+      status="success"
+      title="欢迎使用管理系统"
+      subTitle="请从左侧菜单选择要访问的功能页面"
+    />
+  );
 }
